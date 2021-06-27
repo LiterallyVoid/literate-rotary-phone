@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Gaze</title>
+    <style>
+      :root {
+          padding: 0;
+          margin: 0;
+          background-color: #333;
+          color: #FED;
+      }
+      #everything {
+          margin: 0 auto;
+          font-family: monospace;
+          width: 60em;
+      }
+      gz-inputbox {
+          display: block;
+          font-family: monospace;
+          font-size: 160%;
+          height: 7em;
+          overflow: hidden;
+          line-height: 1em;
+          background-color: #222;
+          border-radius: 0.5em;
+          padding: 0.5em;
+      }
+      .words-container {
+          transition: margin-top 0.1s ease;
+      }
+
+      gz-word.typing > gz-letter.correct {
+          color: #4F4;
+      }
+
+      gz-word.complete > gz-letter.correct {
+          color: #999;
+      }
+
+      gz-letter.wrong {
+          color: #F44;
+      }
+
+      gz-word.complete {
+          color: #822;
+      }
+
+      gz-word {
+          white-space: nowrap;
+      }
+
+      .cursor {
+          display: inline-block;
+          width: 0;
+      }
+      .cursor:after {
+          content: '\00a0';
+          display: inline-block;
+          box-shadow: 0 0 0.01em 0.05em rgba(255, 240, 220, 0.4) inset;
+      }
+      .cursor.focus:after {
+          animation-name: cursor-pulse;
+          animation-duration: 1.5s;
+          animation-iteration-count: infinite;
+          box-shadow: none;
+          background-color: rgba(255, 240, 220, 0.2);
+      }
+
+      @keyframes cursor-pulse {
+          0%, 100% {
+              background-color: rgba(255, 240, 220, 0.2);
+          }
+          50% {
+              background-color: rgba(255, 240, 220, 0.15);
+          }
+      }
+
+      .hidden-input {
+          position: absolute;
+          top: -1000px;
+          left: -1000px;
+          opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <script src="main.js"></script>
+    <div id="everything">
+      <gz-inputbox id="box" tabindex="0"></gz-inputbox>
+    </div>
+    <script>main();</script>
+  </body>
+</html>
